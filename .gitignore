@@ -1,0 +1,2 @@
+# ignore the folder named r_admin_use since it contains db.ini db connection file
+r_admin_use/
