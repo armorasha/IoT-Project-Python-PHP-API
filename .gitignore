@@ -1,5 +1,6 @@
 # ignore the folder named r_admin_use since it contains db.ini db connection file
-r_admin_use/
+#r_admin_use/
 
 # ignore the file literally named foo[01].txt
 db_test_working.py
+r_admin_use/db.ini
