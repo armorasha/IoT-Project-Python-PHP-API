@@ -6,5 +6,9 @@ db_test_working.py
 r_admin_use/db.ini
 
 # Byte-compiled / optimized / DLL files
-python/__pycache__/
+__pycache__/*.pyc
 *.pyc
+
+# Python cache
+__pycache__
+.pyc
