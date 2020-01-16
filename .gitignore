@@ -2,7 +2,6 @@
 #r_admin_use/
 
 # ignore the file literally named foo[01].txt
-db_test_working.py
 r_admin_use/db.ini
 
 # Python cache
