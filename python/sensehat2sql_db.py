@@ -17,9 +17,14 @@ black = (0,0,0)
 grey = (55,55,55)
 white = (255,255,255)
 
+counter = 0
+
 
 ### this is an infinite loop
 while True:
+
+   counter += 1 # for executing mysql delete query once in 10 loops
+   
    ### Step:1 Get sensor readings and process it------------
    temp_reading = sense.get_temperature()
    # temp_reading = random.uniform(4, 48)
@@ -41,6 +46,7 @@ while True:
    print(message)
 
 
+   
    ### Step:3 Write sensor readings in database and keep only last 10 readings------------
    try:
       connection = conn_py_math_db.connect()
@@ -53,15 +59,17 @@ while True:
           ', ' + str(humidity) + ")"
       dbhandler.execute(insert_sql_query)
 
-      # keeping only 10 latest records in db
-      delete_sql_query = "DELETE FROM sensehat_readings WHERE reading_id NOT IN(SELECT * FROM(SELECT reading_id FROM sensehat_readings ORDER BY timestamp DESC LIMIT 10) r)"
-      dbhandler.execute(delete_sql_query)
+      if counter > 10:
+         # keeping only 10 latest records in db
+         delete_sql_query = "DELETE FROM sensehat_readings WHERE reading_id NOT IN(SELECT * FROM(SELECT reading_id FROM sensehat_readings ORDER BY timestamp DESC LIMIT 10) r)"
+         dbhandler.execute(delete_sql_query)
+         print ("Latest 10 records are kept in database and the rest are cleaned up")
       
-      # reading from db
-      dbhandler.execute("SELECT * from sensehat_readings ORDER BY timestamp DESC LIMIT 1")
-      result = dbhandler.fetchall()
-      for item in result:
-         print(item)
+      # reading from db for testing
+      # dbhandler.execute("SELECT * from sensehat_readings ORDER BY timestamp DESC") # Add LIMIT 1 if needed
+      # result = dbhandler.fetchall()
+      # for item in result:
+      #   print(item)
    
    except Exception as e:
       print("Database connection Error: ")
@@ -74,7 +82,8 @@ while True:
 
 
    ### Step:4 Show output in Sensehat LEDs------------
-   # sense.show_message(message, text_colour = white, back_colour = black, scroll_speed = 0.1)
+   sensehat_message = str(temperature) + "C\n"
+   sense.show_message(sensehat_message, text_colour = white, back_colour = black, scroll_speed = 0.1)
 
 
    ### Step:5 Wait 2 seconds and repeat------------
