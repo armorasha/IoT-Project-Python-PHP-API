@@ -80,7 +80,6 @@ while True:
 
 
 
-
    ### Step:4 Show output in Sensehat LEDs------------
    sensehat_message = str(temperature) + "C\n"
    sense.show_message(sensehat_message, text_colour = white, back_colour = black, scroll_speed = 0.1)
