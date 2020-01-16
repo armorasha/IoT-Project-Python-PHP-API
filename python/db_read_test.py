@@ -17,7 +17,7 @@ import mysql.connector
 import configparser
 
 config = configparser.ConfigParser()
-config.read('r_admin_use/db.ini')
+config.read('../r_admin_use/db.ini')
 
 HOST = config['math_mysql']['HOST']
 USER = config['math_mysql']['USER']

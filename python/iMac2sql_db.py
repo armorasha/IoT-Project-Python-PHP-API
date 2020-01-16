@@ -1,12 +1,12 @@
-from sense_hat import SenseHat
+#from sense_hat import SenseHat
 from datetime import datetime
 
 import random, time
 
 import conn_py_math_db
 
-sense = SenseHat()
-sense.clear()
+# sense = SenseHat()
+# sense.clear()
 
 ##sense.set_rotation(180)
 
@@ -21,16 +21,16 @@ white = (255,255,255)
 ### this is an infinite loop
 while True:
    ### Step:1 Get sensor readings and process it------------
-   temp_reading = sense.get_temperature()
-   # temp_reading = random.uniform(4, 48)
+   # temp_reading = sense.get_temperature()
+   temp_reading = random.uniform(4, 48)
    temperature = round(temp_reading, 1)
 
-   pressure_reading = sense.get_pressure()
-   # pressure_reading = random.uniform(900, 1100)
+   # pressure_reading = sense.get_pressure()
+   pressure_reading = random.uniform(900, 1100)
    pressure = int(pressure_reading)
 
-   humidity_reading = sense.get_humidity()
-   # humidity_reading = random.uniform(0, 100)
+   # humidity_reading = sense.get_humidity()
+   humidity_reading = random.uniform(0, 100)
    humidity = int(humidity_reading)
 
    
@@ -81,4 +81,4 @@ while True:
    #time.sleep(2)
 
    ### For Testing: Stopping infiniteloop after one execution------------
-   # break
+   break
