@@ -23,6 +23,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- md is the breakpoint for 768px device. refer bottom comments on styles.css file. -->
     <!-- Bootstrap reference ends -->
@@ -35,135 +36,111 @@
 
 <body>
 
-
-
     <!-- Bootstrap Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
         <a class="navbar-brand" href="/index.php"><i class="fas fa-feather"></i> <span class="span-math">math.</span>FOODONYA.com</a>
     </nav>
 
 
+    <?php
+    require_once('../php/conn_php_math_db.php');
+
+    //getting the most recent record from the database
+    $query = "SELECT * from sensehat_readings ORDER BY timestamp DESC LIMIT 1";
+    $result = mysqli_query($conn, $query) or die("R_Invalid Error" . mysqli_error($conn));
+
+    while ($row = $result->fetch_assoc()) {
+        $timestamp = $row["timestamp"];
+        $temperature = $row["temperature"];
+        $pressure = $row["pressure"];
+        $humidity = $row["humidity"];
+    }
+    ?>
+
 
     <!-- dashboard tiles -->
-    <div class="container mt-5">
+    <div class="container container-fixed-width">
+        <div class="container mt-5">
 
-        <div class="card-deck">
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                <div class="card-header">Sensor 1 <i class="float-right fas fa-thermometer-three-quarters fa-2x"></i></div>
-                <div class="card-body">
-                    <h5 class="card-title">Temperature</h5>
-                    <h1 class="card-title text-info">25.72°C</h1>
-                    <p class="card-text">
-                        Temperature at sensor.
-                        Nearby heat sources can give inaccurate readings.
-                    </p>
+            <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
+
+            <div class="card-deck">
+                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+                    <div class="card-header">Sensor 1 <i class="float-right fas fa-thermometer-three-quarters fa-2x"></i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Temperature</h5>
+                        <h1 class="card-title text-info"><?php echo $temperature; ?>°C</h1>
+                        <p class="card-text">
+                            Temperature at sensor.
+                            Nearby heat sources can give inaccurate readings.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                <div class="card-header">Sensor 2 <i class="float-right fas fa-cloud-sun-rain fa-2x"></i></div>
-                <div class="card-body">
-                    <h5 class="card-title">Pressure</h5>
-                    <h1 class="card-title text-primary">1049.02 mb</h1>
-                    <!-- <h2 class="card-title text-primary">millibar</h2> -->
-                    <p class="card-text">
-                        Atmospheric pressure at sea level is 1 bar.
-                        Low pressure systems bring clouds and rain.
-                    </p>
+                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+                    <div class="card-header">Sensor 2 <i class="float-right fas fa-cloud-sun-rain fa-2x"></i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Pressure</h5>
+                        <h1 class="card-title text-primary"><?php echo $pressure; ?> millibar</h1>
+                        <!-- <h2 class="card-title text-primary">millibar</h2> -->
+                        <p class="card-text">
+                            Atmospheric pressure at sea level is 1 bar.
+                            Low pressure systems bring clouds and rain.
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                <div class="card-header">Sensor 3 <i class="float-right fas fa-tint fa-2x"></i></div>
-                <div class="card-body">
-                    <h5 class="card-title">Humidity</h5>
-                    <h1 class="card-title text-success">45.89%</h1>
-                    <p class="card-text">
-                        A relative humidity level between 35% to 50% is ideal for comfort.
-                    </p>
+                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+                    <div class="card-header">Sensor 3 <i class="float-right fas fa-tint fa-2x"></i></div>
+                    <div class="card-body">
+                        <h5 class="card-title">Humidity</h5>
+                        <h1 class="card-title text-success"><?php echo $humidity; ?>%</h1>
+                        <p class="card-text">
+                            A relative humidity level between 35% to 50% is ideal for comfort.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="container">
+            <div class="col container p-4 bg-dark text-secondary rounded shadow">
+                <h5><i class="fas fa-cloud-upload-alt"></i>&emsp; Data</h5>
+                <p class="pt-4">Last received: <?php echo $timestamp; ?></p>
+                <p>From IP address: 103.217.167.118</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col container">
+                <blockquote class=" blockquote my-5">
+                    <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things.</p>
+                    <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+
     </div>
 
+    <?php
+    mysqli_close($conn);
+    ?>
 
+    <div class="container container-spacer"></div>
 
-
-    <div class="container">
-        <div class="col container p-4 bg-dark text-secondary rounded shadow">
-            <h5><i class="fas fa-cloud-upload-alt"></i> Data</h5>
-            <p class="pt-4">Last received: </p>
-            <p>From IP address: 103.217.167.118</p>
-        </div>
-    </div>
-
-
-
-    <!-- Tech Showcase -->
-    <!-- <div class="container tech-showcase text-dark">
-        <h2 class="display-4 text-center">Tech Stack</h2>
-        <div class="row text-center">
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-cloud fa-3x"></i>
-                <h3>Azure</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fab fa-php fa-3x"></i>
-                <h3>PHP</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-database fa-3x"></i>
-                <h3>MySQL</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-vector-square fa-3x"></i>
-                <h3>APIs</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fab fa-js-square fa-3x"></i>
-                <h3>JS</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-code fa-3x"></i>
-                <h3>AJAX</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-bold fa-3x"></i>
-                <h3>Bootstrap</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fab fa-github fa-3x"></i>
-                <h3>Git</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fab fa-python fa-3x"></i>
-                <h3>Python</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-tasks fa-3x"></i>
-                <h3>PHPUnit</h3>
-            </div>
-            <div class="no-padding col-md col-sm-2 col-3">
-                <i class="fas fa-cube fa-3x"></i>
-                <h3>Selenium</h3>
-            </div>
-        </div>
-    </div> -->
-
-
-
-    <!-- Bootstrap footer-->
-    <nav class="navbar fixed-bottom navbar-dark bg-warning-custom">
-        <span class="navbar-text bottom text-warning">
-            Yavany & Raja <i class="fas fa-copyright"></i> 2020
-        </span>
-    </nav>
+        <!-- Bootstrap footer-->
+        <nav class="navbar fixed-bottom navbar-dark bg-warning-custom">
+            <span class="navbar-text bottom text-warning">
+                Yavany & Raja <i class="fas fa-copyright"></i> 2020
+            </span>
+        </nav>
 
 
 
 
-    <!--Reference to JavaScript code file -->
-    <!-- <script src="js/search_page.js">
+        <!--Reference to JavaScript code file -->
+        <!-- <script src="js/search_page.js">
         </script> -->
 
 

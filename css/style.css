@@ -3,10 +3,9 @@ body {
   background: #22262a !important;
 }
 
-.top-head {
-  text-align:center;
+.container{
+    font-family: 'Titillium Web', sans-serif;
 }
-
 
 .navbar-text.bottom {
   margin-right: auto;
@@ -27,9 +26,10 @@ background-color: #171a1c !important;
   background-color: #332600;
 }
 
-.square:before {
-  content: "";
-  display: block;
-  padding-top: 100%;
-  /* initial ratio of 1:1*/
+.container-fixed-width {
+  max-width: 950px;
+}
+
+.container-spacer {
+  min-height: 50px;
 }
