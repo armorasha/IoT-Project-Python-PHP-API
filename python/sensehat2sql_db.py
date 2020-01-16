@@ -3,7 +3,7 @@ from datetime import datetime
 
 import random, time
 
-import conn_math_db
+import conn_py_math_db
 
 # sense = SenseHat()
 # sense.clear()
@@ -43,7 +43,7 @@ while True:
 
    ### Step:3 Write sensor readings in database and keep only last 10 readings------------
    try:
-      connection = conn_math_db.connect()
+      connection = conn_py_math_db.connect()
 
       dbhandler = connection.cursor()
       
