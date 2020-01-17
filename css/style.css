@@ -33,3 +33,7 @@ background-color: #171a1c !important;
 .container-spacer {
   min-height: 50px;
 }
+
+.dark-mode{
+  opacity: 70%;
+}

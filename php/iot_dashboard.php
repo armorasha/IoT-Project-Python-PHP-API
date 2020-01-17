@@ -31,6 +31,15 @@
     <!--  Custom Styles file should be added after the Bootstrap library links, as in here.-->
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 
+    <!-- Javascript (not AJAX) script to load data tiles from load_dashboard.php every 2 seconds -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var auto_refresh = setInterval(
+            function() {
+                $('#load_data_tiles').load('load_dashboard_tiles.php').fadeIn("slow");
+            }, 2000); // refresh every 2 seconds
+    </script>
+
 
 </head>
 
@@ -41,93 +50,33 @@
         <a class="navbar-brand" href="/index.php"><i class="fas fa-feather"></i> <span class="span-math">math.</span>FOODONYA.com</a>
     </nav>
 
+    <div class="container mt-5">
+        <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
 
-    <?php
-    require_once('../php/conn_php_math_db.php');
+        <!-- dashboard tiles -->
+        <div class="container container-fixed-width">
 
-    //getting the most recent record from the database
-    $query = "SELECT * from sensehat_readings ORDER BY timestamp DESC LIMIT 1";
-    $result = mysqli_query($conn, $query) or die("R_Invalid Error" . mysqli_error($conn));
-
-    while ($row = $result->fetch_assoc()) {
-        $timestamp = $row["timestamp"];
-        $temperature = $row["temperature"];
-        $pressure = $row["pressure"];
-        $humidity = $row["humidity"];
-    }
-    ?>
-
-
-    <!-- dashboard tiles -->
-    <div class="container container-fixed-width">
-        <div class="container mt-5">
-
-            <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
-
-            <div class="card-deck">
-                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                    <div class="card-header">Sensor 1 <i class="float-right fas fa-thermometer-three-quarters fa-2x"></i></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Temperature</h5>
-                        <h1 class="card-title text-info"><?php echo $temperature; ?>°C</h1>
-                        <p class="card-text">
-                            Temperature at sensor.
-                            Nearby heat sources can give inaccurate readings.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                    <div class="card-header">Sensor 2 <i class="float-right fas fa-cloud-sun-rain fa-2x"></i></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Pressure</h5>
-                        <h1 class="card-title text-primary"><?php echo $pressure; ?> mbar</h1>
-                        <!-- <h2 class="card-title text-primary">millibar</h2> -->
-                        <p class="card-text">
-                            Atmospheric pressure at sea level is 1 bar.
-                            Low pressure systems bring clouds and rain.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
-                    <div class="card-header">Sensor 3 <i class="float-right fas fa-tint fa-2x"></i></div>
-                    <div class="card-body">
-                        <h5 class="card-title">Humidity</h5>
-                        <h1 class="card-title text-success"><?php echo $humidity; ?>%</h1>
-                        <p class="card-text">
-                            A relative humidity level between 35% to 50% is ideal for comfort.
-                        </p>
-                    </div>
+            <!-- AJAX updating dashboard tiles will be loaded here from load_dashboard.php and replaces the bootstrap spinner animation -->
+            <div id="load_data_tiles">
+                <div class="spinner-border text-warning m-5 dark-mode" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="sr-only">Loading...</span>
                 </div>
             </div>
+
+
+            <div class="container">
+                <div class="col container">
+                    <blockquote class=" blockquote my-5">
+                        <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things.</p>
+                        <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
+                    </blockquote>
+                </div>
+            </div>
+
         </div>
 
 
-        <div class="container">
-            <div class="col container p-4 bg-dark text-secondary rounded shadow">
-                <h5><i class="fas fa-cloud-upload-alt"></i>&emsp; Data</h5>
-                <p class="pt-4">Last received: <?php echo $timestamp; ?></p>
-                <p>From IP address: 103.217.167.118</p>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="col container">
-                <blockquote class=" blockquote my-5">
-                    <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things.</p>
-                    <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
-                </blockquote>
-            </div>
-        </div>
-
-    </div>
-
-    <?php
-    mysqli_close($conn);
-    ?>
-
-    <div class="container container-spacer"></div>
+        <div class="container container-spacer"></div>
 
         <!-- Bootstrap footer-->
         <nav class="navbar fixed-bottom navbar-dark bg-warning-custom">
@@ -135,15 +84,6 @@
                 Yavany & Raja <i class="fas fa-copyright"></i> 2020
             </span>
         </nav>
-
-
-
-
-        <!--Reference to JavaScript code file -->
-        <!-- <script src="js/search_page.js">
-        </script> -->
-
-
 
 
 </body>
