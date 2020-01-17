@@ -26,10 +26,6 @@ background-color: #171a1c !important;
   background-color: #332600;
 }
 
-.container-fixed-width {
-  max-width: 950px;
-}
-
 .container-spacer {
   min-height: 50px;
 }
@@ -48,6 +44,9 @@ background-color: #171a1c !important;
   min-width: 18rem;
 }
 
+.mb-n1 {
+  margin-bottom: -0.01rem !important;
+}
 
 
 
@@ -56,6 +55,10 @@ background-color: #171a1c !important;
   .container-fluid.data {
     max-width: 18rem;
     min-width: 18rem;
+  }
+
+  .card-body{
+    padding-top: 0px !important;
   }
 
 }

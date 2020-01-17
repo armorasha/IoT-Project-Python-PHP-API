@@ -37,7 +37,7 @@
         var auto_refresh = setInterval(
             function() {
                 $('#load_data_tiles').load('load_dashboard_tiles.php').fadeIn("slow");
-            }, 2000); // refresh every 2 seconds
+            }, 20000); // refresh every 2 seconds
     </script>
 
 
@@ -52,7 +52,7 @@
 
     <div class="container mt-3">
 
-        <!-- dashboard tiles container-fixed-width-->
+        <!-- dashboard tiles -->
         <div class="container-fluid ">
             <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
 
@@ -64,12 +64,10 @@
             </div>
 
             <div class="container row quote">
-                <!-- <div class="col container"> -->
                 <blockquote class=" blockquote my-4">
                     <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things (IoT).</p>
                     <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
                 </blockquote>
-                <!-- </div> -->
             </div>
 
         </div>

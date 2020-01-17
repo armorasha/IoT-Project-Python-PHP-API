@@ -57,9 +57,9 @@
 
 
     <div class="container-fluid data float-left p-0">
-        <div class="col container p-3 bg-dark text-secondary rounded shadow">
+        <div class="col container px-3 pt-3 pb-1 bg-dark text-secondary rounded shadow">
             <h5><i class="fas fa-cloud-upload-alt"></i>&emsp; Data</h5>
-            <p class="pt-3">Last received: <?php echo $timestamp; ?></p>
+            <p class="pt-2 mb-n1">Last received: <?php echo $timestamp; ?></p>
             <p>From IP address: 103.217.167.118</p>
         </div>
     </div>
