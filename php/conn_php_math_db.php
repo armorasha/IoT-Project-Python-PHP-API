@@ -18,11 +18,11 @@
 // $database = $config['DB'];
 
 //-----For Online use: math.Foodonya.com
-$config = parse_ini_file('/home/foodonya/r_admin_use/db.ini'); 
+$config = parse_ini_file('/home/foodonya/r_admin_use/db2.ini'); 
 $server = "localhost";
-$user = $config['math_mysql']['USER']; 
-$password = $config['math_mysql']['PASSWORD']; 
-$database = $config['math_mysql']['DB'];
+$user = $config['USER']; 
+$password = $config['PASSWORD']; 
+$database = $config['DB'];
 
 // create connection
 $conn = new mysqli($server, $user, $password, $database);
