@@ -34,6 +34,10 @@
     <!-- AJAX script to load data tiles from load_dashboard.php every 2 seconds -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
     <script type="text/javascript">
+        // don't cache ajax or content won't be fresh
+        $.ajaxSetup({
+            cache: false
+        });
         var auto_refresh = setInterval(
             function() {
                 $('#load_data_tiles').load('load_dashboard_tiles.php').fadeIn("slow");
