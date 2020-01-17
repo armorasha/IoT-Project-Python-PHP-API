@@ -32,6 +32,7 @@
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 
     <!-- Javascript (not AJAX) script to load data tiles from load_dashboard.php every 2 seconds -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         var auto_refresh = setInterval(
             function() {
