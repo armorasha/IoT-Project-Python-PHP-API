@@ -40,29 +40,44 @@ background-color: #171a1c !important;
 
 .card{
   max-width: 18rem;
-  min-width: 16rem;
+  min-width: 18rem;
 }
 
 .data{
-  min-width: 16rem;
+  max-width: 924px;
+  min-width: 18rem;
 }
+
+
 
 
 /*---Media Queries --*/
 @media (max-width: 1200px) {
-  .carousel-caption {
-    top: 35%;
+  .container-fluid.data {
+    max-width: 18rem;
+    min-width: 18rem;
   }
+
 }
 
 @media (max-width: 992px) {
-  .carousel-caption {
-    top: 30%;
+  .card p {
+    font-size: 80%;
   }
 
-  .tech-showcase h2 {
+  .card h1 {
+    font-size: 200%;
+  }
+
+  .data p {
+    font-size: 80%;
+  }
+
+  .display-4{
     font-size: 300%;
   }
+
+
 }
 
 @media (max-width: 768px) {
@@ -83,6 +98,15 @@ background-color: #171a1c !important;
       p {
         font-size: 2vmin; (1.7vmax works well for Raja)
       }*/
+
+  .quote p {
+    font-size: 80%;
+  }
+
+    .container.quote {
+      max-width: 18rem;
+      min-width: 18rem;
+    }
 
 }
 
