@@ -20,8 +20,6 @@ white = (255,255,255)
 counter = 0
 
 
-
-
 # connecting to database and writing the sensor readings   
 try:
    connection = conn_py_math_db.connect()
