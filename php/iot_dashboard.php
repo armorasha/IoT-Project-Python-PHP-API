@@ -37,7 +37,7 @@
         var auto_refresh = setInterval(
             function() {
                 $('#load_data_tiles').load('load_dashboard_tiles.php').fadeIn("slow");
-            }, 20000); // refresh every 2 seconds
+            }, 2000); // refresh every 2 seconds
     </script>
 
 
