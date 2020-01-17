@@ -10,3 +10,6 @@ __pycache__/
 
 # VS Code
 .vscode/
+
+# backupfiles
+iot_dashboard copy.php
