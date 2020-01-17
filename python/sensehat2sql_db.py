@@ -54,7 +54,7 @@ while True:
       dbhandler = connection.cursor()
       
       # writing to db
-      insert_sql_query = "INSERT INTO sensehat_readings (timestamp, temperature, pressure, humidity) VALUES (NOW()" +\
+      insert_sql_query = "INSERT INTO sensehat_readings (timestamp, temperature, pressure, humidity) VALUES (CONVERT_TZ(NOW(),'SYSTEM','Australia/Adelaide')" +\
           ', ' + str(temperature) + ', ' + str(pressure) + \
           ', ' + str(humidity) + ")"
       dbhandler.execute(insert_sql_query)
