@@ -81,7 +81,7 @@
                     <div class="card-header">Sensor 2 <i class="float-right fas fa-cloud-sun-rain fa-2x"></i></div>
                     <div class="card-body">
                         <h5 class="card-title">Pressure</h5>
-                        <h1 class="card-title text-primary"><?php echo $pressure; ?> millibar</h1>
+                        <h1 class="card-title text-primary"><?php echo $pressure; ?> mbar</h1>
                         <!-- <h2 class="card-title text-primary">millibar</h2> -->
                         <p class="card-text">
                             Atmospheric pressure at sea level is 1 bar.

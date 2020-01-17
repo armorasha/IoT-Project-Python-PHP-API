@@ -9,14 +9,20 @@
 //   ..workbench then connects this php file to the actual webserver's mysql.
 //Here workbench for php acts as mysql.connector for python
 
-//-----For Online use: math.foodonya.com
-$config = parse_ini_file('../r_admin_use/db.ini');
-//print_r($config);
-////db.ini locally saved in sql folder. Retrieve password and info there.
-$server = $config['HOST'];
-$user = $config['USER']; //later use user 3 while production & testing
-$password = $config['PASSWORD']; //then use the password as password
-$database = $config['DB'];
+//-----For local use to connect to MySQL Workbench:
+// $config = parse_ini_file('../r_admin_use/db.ini');
+// //print_r($config);
+// $server = $config['HOST'];
+// $user = $config['USER']; 
+// $password = $config['PASSWORD'];
+// $database = $config['DB'];
+
+//-----For Online use: math.Foodonya.com
+$config = parse_ini_file('/home/foodonya/r_admin_use/db.ini'); 
+$server = "localhost";
+$user = $config['math_mysql']['USER']; 
+$password = $config['math_mysql']['PASSWORD']; 
+$database = $config['math_mysql']['DB'];
 
 // create connection
 $conn = new mysqli($server, $user, $password, $database);
