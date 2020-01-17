@@ -17,7 +17,7 @@
     
 
         <div class="card-deck">
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+            <div class="card text-secondary bg-dark mb-3 shadow">
                 <div class="card-header">Sensor 1 <i class="float-right fas fa-thermometer-three-quarters fa-2x"></i></div>
                 <div class="card-body">
                     <h5 class="card-title">Temperature</h5>
@@ -29,7 +29,7 @@
                 </div>
             </div>
 
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+            <div class="card text-secondary bg-dark mb-3 shadow">
                 <div class="card-header">Sensor 2 <i class="float-right fas fa-cloud-sun-rain fa-2x"></i></div>
                 <div class="card-body">
                     <h5 class="card-title">Pressure</h5>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <div class="card text-secondary bg-dark mb-3 shadow" style="max-width: 18rem;">
+            <div class="card text-secondary bg-dark mb-3 shadow">
                 <div class="card-header">Sensor 3 <i class="float-right fas fa-tint fa-2x"></i></div>
                 <div class="card-body">
                     <h5 class="card-title">Humidity</h5>
@@ -56,7 +56,7 @@
     </div>
 
 
-    <div class="container">
+    <div class="container-fluid data p-0">
         <div class="col container p-4 bg-dark text-secondary rounded shadow">
             <h5><i class="fas fa-cloud-upload-alt"></i>&emsp; Data</h5>
             <p class="pt-4">Last received: <?php echo $timestamp; ?></p>

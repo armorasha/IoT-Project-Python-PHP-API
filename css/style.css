@@ -37,3 +37,63 @@ background-color: #171a1c !important;
 .dark-mode{
   opacity: 70%;
 }
+
+.card{
+  max-width: 18rem;
+  min-width: 16rem;
+}
+
+.data{
+  min-width: 16rem;
+}
+
+
+/*---Media Queries --*/
+@media (max-width: 1200px) {
+  .carousel-caption {
+    top: 35%;
+  }
+}
+
+@media (max-width: 992px) {
+  .carousel-caption {
+    top: 30%;
+  }
+
+  .tech-showcase h2 {
+    font-size: 300%;
+  }
+}
+
+@media (max-width: 768px) {
+  /*    DONT DELETE (From: foodonya css file)
+      
+      Well, my solution is sort of hack, but it works and I am using it.
+      1vw = 1% of viewport width
+      1vh = 1% of viewport height
+      1vmin = 1vw or 1vh, whichever is smaller
+      1vmax = 1vw or 1vh, whichever is larger
+
+      h1 {
+        font-size: 5.9vw;
+      }
+      h2 {
+        font-size: 3.0vh;
+      }
+      p {
+        font-size: 2vmin; (1.7vmax works well for Raja)
+      }*/
+
+}
+
+@media (max-width: 576px) {
+}
+
+@media (max-width: 500px) {
+}
+
+@media (max-width: 430px) {
+}
+
+@media (max-width: 380px) {
+}

@@ -50,11 +50,11 @@
         <a class="navbar-brand" href="/index.php"><i class="fas fa-feather"></i> <span class="span-math">math.</span>FOODONYA.com</a>
     </nav>
 
-    <div class="container mt-5">
-        <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
+    <div class="container mt-3">
 
         <!-- dashboard tiles -->
         <div class="container container-fixed-width">
+            <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
 
             <!-- AJAX updating dashboard tiles will be loaded here from load_dashboard.php and replaces the bootstrap spinner animation -->
             <div id="load_data_tiles">
@@ -66,8 +66,8 @@
 
             <div class="container">
                 <div class="col container">
-                    <blockquote class=" blockquote my-5">
-                        <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things.</p>
+                    <blockquote class=" blockquote my-4">
+                        <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things (IoT).</p>
                         <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
                     </blockquote>
                 </div>
