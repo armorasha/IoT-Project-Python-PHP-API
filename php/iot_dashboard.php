@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <!-- initial scale 1 for mobile website -->
     <title>math.foodonya</title>
-    <meta name="apple-mobile-web-app-title" content="math.foodonya">
+    <meta name="apple-mobile-web-app-title" content="math.Foodonya">
 
 
     <?php
