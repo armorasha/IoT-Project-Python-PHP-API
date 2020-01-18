@@ -47,7 +47,7 @@
 
     <!-- Bootstrap Header -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
-        <a class="navbar-brand" href="/index.php"><i class="fas fa-feather"></i> <span class="span-math">math.</span>FOODONYA.com</a>
+        <a class="navbar-brand" href="/index.php"><i class="far fa-chart-bar math-red"></i> <span class="span-math math-red">math.</span>FOODONYA.com</a>
     </nav>
 
     <div class="container mt-3">
