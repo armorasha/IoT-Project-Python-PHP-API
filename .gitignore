@@ -13,3 +13,8 @@ __pycache__/
 
 # backupfiles
 iot_dashboard copy.php
+
+# unfinished works
+work_under_progress/
+index_file.php
+
