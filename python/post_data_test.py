@@ -14,7 +14,7 @@ payload = {'temp': '14.99', 'pres': '1050.5', 'humi': '50.33', 'key': client_key
 # send the data in a POST request with 10 second timeout
 # r = requests.post('http://localhost/php/data_receiver.php', data=payload, timeout=10)
 
-r = requests.post('https://www.math.foodonya.com/iot/php/post_data_receiver.php',
+r = requests.post('https://www.math.foodonya.com/iot/php/data_receiver.php',
                  data=payload, timeout=10, headers=headers)
 
 print(r.text)
