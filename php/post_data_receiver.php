@@ -27,7 +27,7 @@
         mysqli_close($conn);
     }
     else {
-        echo("Authentication failed");
+        echo "Authentication failed";
     }
 
     
