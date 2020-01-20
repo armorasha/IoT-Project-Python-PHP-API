@@ -2,9 +2,14 @@
     require_once('../php/conn_php_math_db.php');
 
     //receiving data in a POST request from IoT device using python's requests library
-    $temperature = $_POST['temp'];
-    $pressure = $_POST['pres'];
-    $humidity = $_POST['humi'];
+    // $temperature = $_POST['temp'];
+    // $pressure = $_POST['pres'];
+    // $humidity = $_POST['humi'];
+
+    //receiving data in a POST request from IoT device using python's requests library
+    $temperature = $_GET['temp'];
+    $pressure = $_GET['pres'];
+    $humidity = $_GET['humi'];
 
     //writing the received data in the database
     $query = "INSERT INTO sensehat_readings (timestamp, temperature, pressure, humidity)".
