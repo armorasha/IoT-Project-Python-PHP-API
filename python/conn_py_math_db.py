@@ -10,7 +10,7 @@ USER = config['math_mysql']['USER']
 PASSWORD = config['math_mysql']['PASSWORD']
 DB = config['math_mysql']['DB']
 
-def connect():
+def connecty():
     return mysql.connector.connect(
         host=HOST,
         user=USER,
