@@ -10,7 +10,6 @@ $client_key = $_POST['key'];
 ob_start();    // start output buffering
 include("auth_iot_device.php");
 $authentication = ob_get_contents();    // get contents from the buffer
-echo $authentication;
 ob_end_clean();   
 
     if ($authentication){
@@ -30,6 +29,7 @@ ob_end_clean();
     }
     else {
         echo "Authentication failed";
+        echo "auth" . $authentication;
     }
 
     
