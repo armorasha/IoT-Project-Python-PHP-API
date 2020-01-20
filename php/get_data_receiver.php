@@ -6,7 +6,7 @@
     // $pressure = $_POST['pres'];
     // $humidity = $_POST['humi'];
 
-    //receiving data in a POST request from IoT device using python's requests library
+    //receiving data in a GET request from IoT device using python's requests library
     $temperature = $_GET['temp'];
     $pressure = $_GET['pres'];
     $humidity = $_GET['humi'];
