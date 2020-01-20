@@ -1,24 +1,20 @@
 <?php
     
-
 //receiving data in a POST request from IoT device using python's requests library
 $temperature = $_POST['temp'];
 $pressure = $_POST['pres'];
 $humidity = $_POST['humi'];
 $client_key = $_POST['key'];
 
-ob_start();    // start output buffering
-include("auth_iot_device.php");
-$authentication = ob_get_contents();    // get contents from the buffer
-ob_end_clean();   
+//get the server key and check with POSTed client key
+//$config = parse_ini_file('../r_admin_use/db2.ini'); //localhost
+$config = parse_ini_file('/home/foodonya/r_admin_use/db2.ini'); //Online use
 
-    if ($authentication){
+$server_key = $config['POST_KEY'];
+
+if ($server_key === $client_key) //when authentication pass write to db
+{
         require_once('../php/conn_php_math_db.php');
-
-        //receiving data in a GET request from IoT device using python's requests library
-        // $temperature = $_GET['temp'];
-        // $pressure = $_GET['pres'];
-        // $humidity = $_GET['humi'];
 
         //writing the received data in the database
         $query = "INSERT INTO sensehat_readings (timestamp, temperature, pressure, humidity)" .
@@ -29,9 +25,6 @@ ob_end_clean();
     }
     else {
         echo "Authentication failed";
-        echo "auth" . $authentication;
     }
 
-    
-    
 ?>
