@@ -23,7 +23,7 @@ if ($server_key === $client_key) //when authentication pass write to db
 
         mysqli_close($conn);
 
-        echo "POST data written to database after auth";
+        echo "POST data written to database after Auth";
     }
     else {
         echo "Authentication failed";
