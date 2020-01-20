@@ -22,6 +22,8 @@ if ($server_key === $client_key) //when authentication pass write to db
         $result = mysqli_query($conn, $query) or die("R_Invalid Error" . mysqli_error($conn));
 
         mysqli_close($conn);
+
+        echo "POST data written to database after auth";
     }
     else {
         echo "Authentication failed";
