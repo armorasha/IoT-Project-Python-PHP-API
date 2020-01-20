@@ -7,7 +7,7 @@
     $humidity = $_POST['humi'];
     $client_key = $_POST['key'];
 
-    $config = parse_ini_file('../r_admin_use/db.ini');
+    $config = parse_ini_file('../r_admin_use/db2.ini');
     //print_r($config);
     $server_key = $config['POST_KEY'];
 
