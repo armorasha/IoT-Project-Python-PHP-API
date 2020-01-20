@@ -17,6 +17,4 @@ payload = {'temp': '34.99', 'pres': '1050.5', 'humi': '50.33', 'key': client_key
 r = requests.post('https://www.math.foodonya.com/iot/php/post_data_receiver.php',
                  data=payload, timeout=10, headers=headers)
 
-print(r.url)
-
 print(r.text)
