@@ -11,9 +11,13 @@ __pycache__/
 # VS Code
 .vscode/
 
-# backupfiles
-*_backup.*
+# backup files / folders
+*backup*.*
+*backup*/
 
+# obsolete files /folders
+*obsolete*.*
+*obsolete*/
 
 
 
