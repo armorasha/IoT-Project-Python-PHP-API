@@ -151,8 +151,9 @@ if __name__ == '__main__':
     # other devices in the internet cannot POST data to data_receiver.php without client_key
     # 'User-Agent' headers are to be sent with POST requests or my webserver is giving out 403 error
     config = configparser.ConfigParser()
-    config.read('../r_admin_use/db.ini')
-    client_key = config['math_mysql']['POST_KEY'] #get client key from db.ini
+    # config.read('../r_admin_use/db.ini')
+    config.read('/home/pi/projects/yav_python2html/r_admin_use/db.ini')
+    client_key = config['math_foodonya']['POST_KEY'] #get client key from db.ini
     headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
