@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Titillium+Web&display=swap" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- md is the breakpoint for 768px device. refer bottom comments on styles.css file. -->
     <!-- Bootstrap reference ends -->
@@ -23,7 +23,7 @@
     <!--  Custom Styles file should be added after the Bootstrap library links, as in here.-->
     <link href="../css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- Javascript (not AJAX) script to load data tiles from load_dashboard.php every 2 seconds -->
+    <!-- Javascript's powerful AJAX load() is used to load data tiles from load_dashboard_tiles.php every 2 seconds -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript">
         var auto_refresh = setInterval(
@@ -45,17 +45,18 @@
     <div class="container mt-3">
 
         <!-- dashboard tiles -->
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <h1 class="display-4 text-secondary mb-2">IoT Dashboard</h1>
 
-            <!-- AJAX updating dashboard tiles will be loaded here from load_dashboard.php and replaces the bootstrap spinner animation -->
+            <!-- Javascript's AJAX load() method updating dashboard tiles will be loaded here from load_dashboard_tiles.php and replaces the bootstrap spinner animation -->
             <div id="load_data_tiles">
                 <div class="spinner-border text-warning m-5 dark-mode" style="width: 3rem; height: 3rem;" role="status">
                     <span class="sr-only">Loading...</span>
+                    <!-- this will be replaced by the loading dashboard tiles -->
                 </div>
             </div>
 
-            <div class="container row quote">
+            <div class="container quote">
                 <blockquote class=" blockquote my-4">
                     <p class="mb-0 text-secondary">It's estimated that 1.9bn devices are already connected to this Internet of Things (IoT).</p>
                     <footer class="blockquote-footer"> <cite title="Source Title">Source: Salesforce</cite></footer>
@@ -68,10 +69,20 @@
         <div class="container container-spacer"></div>
 
         <!-- Bootstrap footer-->
-        <nav class="navbar fixed-bottom navbar-dark bg-warning-custom">
-            <span class="navbar-text bottom text-warning">
-                Yavany & Raja <i class="fas fa-copyright"></i> 2020
-            </span>
+        <nav class="navbar fixed-bottom navbar-dark bg-warning-custom text-center p-0 m-0">
+            <div class="col-md-8 col-xs-6 p-0">
+                <span class=" navbar-text bottom b1 text-warning">
+                    Visit <a class="navbar-brand mx-2" href="https://foodonya.com/"><i class="fas fa-pizza-slice"></i> FOODONYA.com</a>
+                </span>
+                <span class="navbar-text bottom text-warning">
+                    The Pizza Chain Web App
+                </span>
+            </div>
+            <div class="author-bg col-md-4 col-xs-6 p-0"><span class="author-text navbar-text bottom text-warning">
+                    Raja & Yavany <i class="fas fa-copyright"></i> 2020
+                </span>
+            </div>
+
         </nav>
 
 

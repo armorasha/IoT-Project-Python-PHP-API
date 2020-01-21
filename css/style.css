@@ -1,10 +1,13 @@
 body {
-  /* background: #394046 !important; */
   background: #22262a !important;
 }
 
 .container{
     font-family: 'Titillium Web', sans-serif;
+}
+
+.navbar-brand {
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar-text.bottom {
@@ -40,7 +43,7 @@ background-color: #171a1c !important;
 }
 
 .data{
-  max-width: 924px;
+  /* max-width: 924px; */
   min-width: 18rem;
 }
 
@@ -52,11 +55,6 @@ background-color: #171a1c !important;
 
 /*---Media Queries --*/
 @media (max-width: 1200px) {
-  .container-fluid.data {
-    max-width: 18rem;
-    min-width: 18rem;
-  }
-
   .card-body{
     padding-top: 0px !important;
   }
@@ -80,6 +78,10 @@ background-color: #171a1c !important;
     font-size: 300%;
   }
 
+   .card-deck {
+     margin-top: 2rem;
+     margin-bottom: 2rem;
+   }
 
 }
 
@@ -106,10 +108,43 @@ background-color: #171a1c !important;
     font-size: 80%;
   }
 
-    .container.quote {
-      max-width: 18rem;
-      min-width: 18rem;
-    }
+  .container.quote {
+    max-width: 18rem;
+    min-width: 18rem;
+  }
+
+  .author-bg {
+    background-color: #3d2d00;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  }
+
+  .author-text {
+    opacity: 30% !important;
+  }
+
+  .display-4{
+    text-align:center;
+  }
+
+  .data {
+    max-width: 18rem;
+    min-width: 18rem;
+  }
+
+  .card-deck {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .navbar.fixed-bottom{
+    font-size: 80%;
+  }
+
+  .navbar.fixed-bottom a{
+    font-size: 120%;
+  }
+
 
 }
 
@@ -123,4 +158,10 @@ background-color: #171a1c !important;
 }
 
 @media (max-width: 380px) {
+}
+
+@media (max-width: 320px){
+  .navbar-text.bottom.b1{
+    padding-bottom: 0rem;
+  }
 }

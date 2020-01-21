@@ -13,7 +13,7 @@ if ($server_key === $client_key) //when authentication passes write to db
 {
         require_once('../php/conn_php_math_db.php');
 
-        //writing the received data in the database
+        //cleaning up database by deleting all records except the last 10 recent records
         $query = "DELETE FROM sensehat_readings WHERE reading_id NOT IN(SELECT * FROM(SELECT reading_id FROM sensehat_readings ORDER BY timestamp DESC LIMIT 10) r)";
         $result = mysqli_query($conn, $query) or die("R_Invalid Error" . mysqli_error($conn));
 
