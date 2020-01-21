@@ -3,7 +3,6 @@
 
 # ignore the file literally named foo[01].txt
 r_admin_use/db.ini
-conn_php_math_db.php
 
 # Python cache
 __pycache__/
