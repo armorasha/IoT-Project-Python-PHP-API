@@ -3,84 +3,55 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Fork this public repo to your local machine for your development and testing purposes. See deployment for notes on how to deploy the project on a live web server.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+* Some coding experience necessary.
+* [XAMPP](https://www.apachefriends.org/index.html) - Local web server. [PHP](https://www.php.net/) comes with it.
+* [MySQL Workbench](https://www.mysql.com/products/workbench/) - Local database server
+* Any code editor. I used [VS Code](https://code.visualstudio.com/)
+* [Python](https://www.python.org/) - Latest version (or must be above 3.5)
+* A web hosting account that supports PHP and MySQL.
+* [Raspberry Pi](https://www.raspberrypi.org/) or similar
+* [Sense Hat](https://www.raspberrypi.org/products/sense-hat/) or similar
+* A Mac or PC
+* [Git](https://git-scm.com/) ofcourse, to fork this project.
 
-```
-Give examples
-```
 
-### Installing
+## How this works
+1. Python collects the Sense Hat sensors data and sends the data using POST request to the data_collector.php file in webserver.
+2. Data_collector.php is a backend file that writes the received data into a MySQL database, whenever a POST request is received.
+3. Iot_dashboard.php is the frontend file that periodically gets new data from the MySQL database and displays it in a dashboard. iot_dashboard_tiles.php and conn_php_math_db.php are its helper files. Iot_dashboard.php is the file users will visit to see the weather data.
+4. Db_cleaner.php is for cleaning up the database once in a while to keep the database size smaller. This file works similar to Data_collector.php.
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+## Which files run where
 
-```
-Give the example
-```
+### Local development
 
-And repeat
+* PHP files will be served by your XAMPP local server.
+* MySQL Database will be hosted in a live server's [cPanel](https://www.cpanel.net/) > [phpMyAdmin](https://www.phpmyadmin.net/)
+* MySQL Workbench serves the live database locally for development.
+* Python script runs in your IoT device. This was a Raspberry Pi connected with a SenseHat in my case.
 
-```
-until finished
-```
+### Production
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* PHP files lives in your [webserver](https://math.foodonya.com/iot/php/iot_dashboard.php)
+* MySQL Database will be hosted in a live server's [cPanel](https://www.cpanel.net/) > [phpMyAdmin](https://www.phpmyadmin.net/)
+* Python script runs in your IoT device. This was a Raspberry Pi connected with a SenseHat in my case.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This public repository must be used for non-commercial educational use only.
+
+## Authors
+
+* **Raja Palanivel** - *PHP, Python, MySQL, Bootstrap, CSS, jQuery, Git* - [Foodonya](https://foodonya.com/)
+* **Yavany Raja** - *HTML, Bootstrap, CSS, Python*
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Hat tip to anyone whose Python libraries were used
+* Inspirations by friends, [Bala](https://www.linkedin.com/in/balasmn/)
+* The Open source community
