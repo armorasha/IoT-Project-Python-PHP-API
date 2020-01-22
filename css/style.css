@@ -13,7 +13,7 @@ body {
 .navbar-text.bottom {
   margin-right: auto;
   margin-left: auto;
-  opacity: 50%;
+  opacity: 30%;
 }
 
 .math-red {
@@ -26,11 +26,12 @@ background-color: #171a1c !important;
 
 
 .bg-warning-custom {
-  background-color: #332600;
+  /* background-color: #332600; */
+  background-color: #2e2200;
 }
 
 .container-spacer {
-  min-height: 80px;
+  min-height: 120px;
 }
 
 .dark-mode{
@@ -114,13 +115,14 @@ background-color: #171a1c !important;
   }
 
   .author-bg {
-    background-color: #3d2d00;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* background-color: #3d2d00; */
+    background-color: #332600;
+    box-shadow: 0 0px 8px 0px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   }
 
   .author-text {
-    opacity: 30% !important;
+    opacity: 20% !important;
   }
 
   .display-4{
