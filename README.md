@@ -7,11 +7,10 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 ## Getting Started
 
-Fork this public repo to your local machine for your development and testing purposes. See deployment for notes on how to deploy the project on a live web server.
+Fork this public repo to your local machine for your development and testing purposes. **Some coding experience necessary**.
 
 ### Prerequisites
 
-* Some coding experience necessary.
 * [XAMPP](https://www.apachefriends.org/index.html) - Local web server. [PHP](https://www.php.net/) comes with it.
 * [MySQL Workbench](https://www.mysql.com/products/workbench/) - Local database server
 * Any code editor. I used [VS Code](https://code.visualstudio.com/)
@@ -44,6 +43,10 @@ Fork this public repo to your local machine for your development and testing pur
 * PHP files lives in your [webserver](https://math.foodonya.com/iot/php/iot_dashboard.php)
 * MySQL Database will be hosted in a live server's [cPanel](https://www.cpanel.net/) > [phpMyAdmin](https://www.phpmyadmin.net/)
 * Python script runs in your IoT device. This was a Raspberry Pi connected with a SenseHat in my case.
+
+## Deployment
+
+Explaining deployment of this repo/project in both local and production environments is out-of-scope of this Readme page. However, there are plenty of resources available online posted by talented and generous IT community all around the world. Also, lots of comments were added through-out the code files for reading and understanding what is going on. 
 
 ## License
 
