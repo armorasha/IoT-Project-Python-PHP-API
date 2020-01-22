@@ -1,6 +1,10 @@
 # IoT Project: Live Weather Station -Python, PHP, RaspberryPi, SenseHat's Weather sensors
 An IoT project to send live local weather data gathered using Raspberry Pi's SenseHat to a remote database and display in an online dashboard at www.math.foodonya.com/iot Stack used: Python, Python external libraries, PHP, MySQL, Apache, Bootstrap, CSS, jQuery. This public repository must be used for non-commercial educational use only.
 
+## Dashboard
+
+![Image of Dashboard](https://math.foodonya.com/iot/r_admin_use/dash_img.jpg)
+
 ## Getting Started
 
 Fork this public repo to your local machine for your development and testing purposes. See deployment for notes on how to deploy the project on a live web server.
