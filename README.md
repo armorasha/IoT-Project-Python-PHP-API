@@ -26,16 +26,16 @@ Fork this public repo to your local machine for your development and testing pur
 4. Db_cleaner.php is for cleaning up the database once in a while to keep the database size smaller. This file works similar to Data_collector.php.
 
 
-## Which files run where
+## Where do these files run?
 
-### Local development
+### While Local development
 
 * PHP files will be served by your XAMPP local server.
 * MySQL Database will be hosted in a live server's [cPanel](https://www.cpanel.net/) > [phpMyAdmin](https://www.phpmyadmin.net/)
 * MySQL Workbench serves the live database locally for development.
 * Python script runs in your IoT device. This was a Raspberry Pi connected with a SenseHat in my case.
 
-### Production
+### While Production
 
 * PHP files lives in your [webserver](https://math.foodonya.com/iot/php/iot_dashboard.php)
 * MySQL Database will be hosted in a live server's [cPanel](https://www.cpanel.net/) > [phpMyAdmin](https://www.phpmyadmin.net/)
@@ -43,15 +43,15 @@ Fork this public repo to your local machine for your development and testing pur
 
 ## License
 
-This public repository must be used for non-commercial educational use only.
+This public repository must be used for non-commercial and educational use only.
 
 ## Authors
 
-* **Raja Palanivel** - *PHP, Python, MySQL, Bootstrap, CSS, jQuery, Git* - [Foodonya](https://foodonya.com/)
-* **Yavany Raja** - *HTML, Bootstrap, CSS, Python*
+* **Raja Palanivel** - *PHP, Python, MySQL, Bootstrap, CSS, jQuery, Git* - Another project here: [Foodonya.com](https://foodonya.com/)
+* **Yavany Raja** - *HTML, Bootstrap, CSS, Python* - Year 7 Student.
 
 ## Acknowledgments
 
-* Hat tip to anyone whose Python libraries were used
-* Inspirations by friends, [Bala](https://www.linkedin.com/in/balasmn/)
+* Hat tip to anyone whose Python libraries were used in this project.
+* Inspirations by friends, [Bala](https://www.linkedin.com/in/balasmn/), [Prashanth](https://www.linkedin.com/in/prashanth-umashanker-a28a6019/).
 * The Open source community
