@@ -7,10 +7,11 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 ## Getting Started
 
-Fork this public repo to your local machine for your development and testing purposes. **Some coding experience necessary**.
+Fork this public repo to your local machine for your development and testing purposes.
 
 ### Prerequisites
 
+* **Some coding experience essential.**
 * [XAMPP](https://www.apachefriends.org/index.html) - Local web server. [PHP](https://www.php.net/) comes with it.
 * [MySQL Workbench](https://www.mysql.com/products/workbench/) - Local database server
 * Any code editor. I used [VS Code](https://code.visualstudio.com/)
@@ -19,7 +20,7 @@ Fork this public repo to your local machine for your development and testing pur
 * [Raspberry Pi](https://www.raspberrypi.org/) or similar
 * [Sense Hat](https://www.raspberrypi.org/products/sense-hat/) or similar
 * A Mac or PC
-* [Git](https://git-scm.com/) ofcourse, to fork this project.
+* [Git](https://git-scm.com/) of course, to fork this project.
 
 
 ## How this works
