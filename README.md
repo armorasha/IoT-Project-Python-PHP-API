@@ -58,7 +58,7 @@ This public repository must be used for non-commercial and educational use only.
 * **Raja Palanivel** - *PHP, Python, MySQL, Bootstrap, CSS, jQuery, Git* - Another project here: [Foodonya.com](https://foodonya.com/)
 * **Yavany Arumuga Raja** - *HTML, Bootstrap, CSS, Python* - Year 7 Student.
 
-## Acknowledgments
+## Acknowledgements
 
 * Hat tip to anyone whose Python libraries were used in this project.
 * Inspirations by friends, [Bala](https://www.linkedin.com/in/balasmn/), [Prashanth](https://www.linkedin.com/in/prashanth-umashanker-a28a6019/).
