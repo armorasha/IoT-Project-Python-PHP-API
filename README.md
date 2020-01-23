@@ -7,7 +7,7 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 ## Getting Started
 
-Fork this public repo to your local machine for your development and testing purposes.
+Clone this public repo to your local machine for your development and testing purposes.
 
 ### Prerequisites
 
