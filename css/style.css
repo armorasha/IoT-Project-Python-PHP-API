@@ -14,6 +14,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   opacity: 30%;
+    -webkit-opacity: 30%; /* for safari */
 }
 
 .math-red {
@@ -36,6 +37,7 @@ background-color: #171a1c !important;
 
 .dark-mode{
   opacity: 70%;
+      -webkit-opacity: 70%; /* for safari */
 }
 
 .card{
@@ -123,6 +125,7 @@ background-color: #171a1c !important;
 
   .author-text {
     opacity: 20% !important;
+        -webkit-opacity: 20% !important;/* for safari */
   }
 
   .display-4{
