@@ -1,12 +1,17 @@
 from sense_hat import SenseHat
 from datetime import datetime
 import random, time
+from random import randint
 import sys
 
 import urllib.request
 import requests
 #from requests import get
 import configparser
+
+#to prevent socket timeout error
+from socket import timeout
+from urllib.error import HTTPError, URLError
 
 
 sense = SenseHat()
@@ -15,7 +20,7 @@ sense.clear()
 ##sense.set_rotation(180)
 
 blue = (0,0,255)
-yellow = (255,255,0)
+yellow = (255,255,0) 
 red = (255,0,0)
 black = (0,0,0)
 grey = (55,55,55)
@@ -38,11 +43,21 @@ def check_internet_status():
       offline_message = "\nOFFLINE"
       print_scroll_text(offline_message, red)
       return False
+   except (HTTPError, URLError) as err:
+      site_down_message = "\nSITE DOWN"
+      print_scroll_text(site_down_message, cyan)
+      return False
+   except timeout as err:
+      socket_error_message = "\nSocket timed out. May need Modem-Restart."
+      print_scroll_text(socket_error_message, magenta)
+      return False
+   
    
 
 #Prints in monitor and scrolls text in sensehat
 def print_scroll_text(message, led_colour):
    print(message)
+   # prevent_burn_in() # For OLED burn-in prevention
    sense.show_message(message, text_colour = led_colour, back_colour = black, scroll_speed = 0.03)
 
 #Scrolls text in sensehat
@@ -55,10 +70,11 @@ def get_sensor_readings():
    global temperature
    global pressure
    global humidity
+   calibration = -1.5 # (- 1.5) is calibration in my case
 
    temp_reading = sense.get_temperature()
    # temp_reading = random.uniform(4, 48)
-   temperature = round(temp_reading, 2)
+   temperature = round(temp_reading, 2) + calibration
    
    pressure_reading = sense.get_pressure()
    # pressure_reading = random.uniform(900, 1100)
@@ -90,10 +106,11 @@ def post_readings_to_webserver():
       # based on the text returned from POST request, auth success is checked here
       if (r.text == "POST data written to database after Auth"):       
          print(screen_message)
+         # prevent_burn_in() # For OLED burn-in prevention
          scroll_text(sensehat_message, white)
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
-         print_scroll_text(r.text, magenta)
+         print_scroll_text(r.text, cyan)
          sys.exit() #exit if auth failed
             
    # exception raised for any reason
@@ -126,7 +143,7 @@ def cleanup_db():
          scroll_text("Cleanup", blue)
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
-         print_scroll_text(r.text, magenta)
+         print_scroll_text(r.text, cyan)
          sys.exit()
    
    # exception raised for any reason
@@ -140,6 +157,13 @@ def cleanup_db():
       return False #return false if exception happen
 
 
+   
+#For OLED burn-in prevention, add some random EOL
+def prevent_burn_in():
+   primes_minus_1_list = [1,4,6,10,12]
+   oled_steps = random.choice(primes_minus_1_list)
+   for x in range(oled_steps):
+      print("") #prints a blank line
 
 
 # MAIN PROGRAM---------------------------------
@@ -177,12 +201,17 @@ if __name__ == '__main__':
             break    # break will close this inner loop and returns to outer loop where it checks internet status again
 
          
-         ### Step:3 Keeping only 10 latest records in db and reset count
-         if counter > 10:
+         ### Step:3 Every 100 count, keep only 10 latest records in db and reset count
+         if counter > 100:
+
             if not cleanup_db(): # if cleanup_db returns false
                break # break will close this inner loop and returns to outer loop where it checks internet status again
             else: # if cleanup_db returns true
                counter = 0 # reset counter
+            # counter = 0 # reset counter. Comment this if counter was reset before.
+
+
+            
             
 
 
