@@ -226,7 +226,7 @@ if __name__ == '__main__':
 
 
     #Create and configure logger 
-    logging.basicConfig(filename="error.log", 
+    logging.basicConfig(filename="/home/pi/projects/yav_python2html/python/error.log", 
                     format='%(asctime)-21s %(levelname)-8s %(message)s', datefmt='%d-%m-%Y %H:%M:%S',
                     filemode='a')   
     logger=logging.getLogger() #Creating an object 
