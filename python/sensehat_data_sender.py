@@ -40,22 +40,22 @@ cyan = (0,255,255)
 def check_internet_status():
    try:
       urllib.request.urlopen('http://216.58.192.142', timeout=1)
-      online_message = "\nInternet is on"
+      online_message = "Internet is on"
       print_scroll_text(online_message, green)
       log_message_once(online_message, "INFO")
       return True
    except urllib.request.URLError as err:
-      offline_message = "\nOFFLINE"
+      offline_message = "OFFLINE"
       print_scroll_text(offline_message, red)
       log_message_once(offline_message, "WARNING")
       return False
    except (HTTPError, URLError) as err:
-      site_down_message = "\nSITE DOWN"
+      site_down_message = "SITE DOWN"
       print_scroll_text(site_down_message, cyan)
       log_message_once(site_down_message, "CRITICAL")
       return False
    except timeout as err:
-      socket_error_message = "\nSocket timed out. May need Modem-Restart."
+      socket_error_message = "Socket timed out. May need Modem-Restart."
       print_scroll_text(socket_error_message, magenta)
       log_message_once(socket_error_message, "ERROR")
       return False
@@ -64,7 +64,7 @@ def check_internet_status():
 
 #Prints in monitor and scrolls text in sensehat
 def print_scroll_text(message, led_colour):
-   print(message)
+   print("\n" + message)
    # prevent_burn_in() # For OLED burn-in prevention
    sense.show_message(message, text_colour = led_colour, back_colour = black, scroll_speed = 0.03)
 
@@ -140,6 +140,7 @@ def post_readings_to_webserver():
          print(screen_message)
          # prevent_burn_in() # For OLED burn-in prevention
          scroll_text(sensehat_message, white)
+         log_message_once("Started posting sensor readings", "INFO")
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
          print_scroll_text(r.text, cyan)
@@ -148,13 +149,13 @@ def post_readings_to_webserver():
             
    # exception raised for any reason
    except Exception as e:
-      post_error = "\nPOST request failed: "
+      post_error = "POST request failed: "
       print_scroll_text(post_error, red)
       log_message_once(post_error, "ERROR")
       log_message_once(e, "ERROR")  
       print(e)
             
-      reconnect_message = "\nWill reconnect...\n\n"
+      reconnect_message = "Will reconnect...\n\n"
       print_scroll_text(reconnect_message, yellow)
       log_message_once(reconnect_message, "INFO")
 
@@ -190,13 +191,13 @@ def cleanup_db():
    
    # exception raised for any reason
    except Exception as e:
-      post_error = "\nPOST request failed: "
+      post_error = "POST request failed: "
       print_scroll_text(post_error, red)
       log_message_once(post_error, "ERROR")
       log_message_once(e, "ERROR")  
       print(e)
    
-      reconnect_message = "\nWill reconnect...\n\n"
+      reconnect_message = "Will reconnect...\n\n"
       print_scroll_text(reconnect_message, yellow)
       log_message_once(reconnect_message, "INFO")
 
@@ -226,11 +227,12 @@ if __name__ == '__main__':
 
     #Create and configure logger 
     logging.basicConfig(filename="error.log", 
-                    format='%(asctime)s %(message)s', 
+                    format='%(asctime)-21s %(levelname)-8s %(message)s', datefmt='%d-%m-%Y %H:%M:%S',
                     filemode='a')   
     logger=logging.getLogger() #Creating an object 
     logger.setLevel(logging.INFO) #Setting the threshold of logger to DEBUG/INFO
 
+    log_message_once("\n\n\n", "INFO") # spacer in log file 
     log_message_once("Program started", "INFO")
 
 
