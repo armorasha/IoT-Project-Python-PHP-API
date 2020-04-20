@@ -13,6 +13,9 @@ import configparser
 from socket import timeout
 from urllib.error import HTTPError, URLError
 
+#logging module
+import logging
+
 
 sense = SenseHat()
 sense.clear()
@@ -30,6 +33,7 @@ magenta = (255,0,255)
 cyan = (0,255,255)
 
 
+
 # FUNCTIONS---------------------------------------
 
 #Checks if internet is on by urlopen-ing google.com
@@ -38,18 +42,22 @@ def check_internet_status():
       urllib.request.urlopen('http://216.58.192.142', timeout=1)
       online_message = "\nInternet is on"
       print_scroll_text(online_message, green)
+      log_message_once(online_message, "INFO")
       return True
    except urllib.request.URLError as err:
       offline_message = "\nOFFLINE"
       print_scroll_text(offline_message, red)
+      log_message_once(offline_message, "WARNING")
       return False
    except (HTTPError, URLError) as err:
       site_down_message = "\nSITE DOWN"
       print_scroll_text(site_down_message, cyan)
+      log_message_once(site_down_message, "CRITICAL")
       return False
    except timeout as err:
       socket_error_message = "\nSocket timed out. May need Modem-Restart."
       print_scroll_text(socket_error_message, magenta)
+      log_message_once(socket_error_message, "ERROR")
       return False
    
    
@@ -63,6 +71,30 @@ def print_scroll_text(message, led_colour):
 #Scrolls text in sensehat
 def scroll_text(message, led_colour):
    sense.show_message(message, text_colour = led_colour, back_colour = black, scroll_speed = 0.03)
+
+
+
+# Logs an error message to file only once
+# same subsequent error messages will not be logged
+def log_message_once(log_message, log_level):
+   # call the global var declared in main() to be used here
+   global logged_message
+   
+   # Log only if previously logged_message is not same as current log_message
+   if log_message != logged_message:
+      #logging in appropriate level
+      if log_level == "INFO":
+         logger.info(log_message) 
+      elif log_level == "WARNING":
+         logger.warning(log_message) 
+      elif log_level == "ERROR":
+         logger.error(log_message) 
+      elif log_level == "CRITICAL":
+         logger.critical(log_message)
+
+      # then set the global logged_message to latest log_message
+      logged_message = log_message
+   
 
 
 #Get sensor readings
@@ -111,16 +143,25 @@ def post_readings_to_webserver():
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
          print_scroll_text(r.text, cyan)
+         log_message_once(r.text, "CRITICAL")
          sys.exit() #exit if auth failed
             
    # exception raised for any reason
    except Exception as e:
       post_error = "\nPOST request failed: "
       print_scroll_text(post_error, red)
+      log_message_once(post_error, "ERROR")
+      log_message_once(e, "ERROR")  
       print(e)
             
       reconnect_message = "\nWill reconnect...\n\n"
       print_scroll_text(reconnect_message, yellow)
+      log_message_once(reconnect_message, "INFO")
+
+      # setting last logged_message back to post_error
+      # so that this same error will not be logged again if
+      # this "POST request failed" error keeps looping
+      logged_message = post_error
       return False #return false if exception happen
 
 
@@ -144,16 +185,25 @@ def cleanup_db():
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
          print_scroll_text(r.text, cyan)
+         log_message_once(r.text, "CRITICAL")
          sys.exit()
    
    # exception raised for any reason
    except Exception as e:
       post_error = "\nPOST request failed: "
       print_scroll_text(post_error, red)
+      log_message_once(post_error, "ERROR")
+      log_message_once(e, "ERROR")  
       print(e)
    
       reconnect_message = "\nWill reconnect...\n\n"
       print_scroll_text(reconnect_message, yellow)
+      log_message_once(reconnect_message, "INFO")
+
+      # setting last logged_message back to post_error
+      # so that this same error will not be logged again if
+      # this "POST request failed" error keeps looping
+      logged_message = post_error
       return False #return false if exception happen
 
 
@@ -169,7 +219,20 @@ def prevent_burn_in():
 # MAIN PROGRAM---------------------------------
 if __name__ == '__main__':
 
-    counter = 0
+    # for global use
+    counter = 0 # to keep the count for cleanup_db()
+    logged_message = "" # to keep track of latest logged message
+
+
+    #Create and configure logger 
+    logging.basicConfig(filename="error.log", 
+                    format='%(asctime)s %(message)s', 
+                    filemode='a')   
+    logger=logging.getLogger() #Creating an object 
+    logger.setLevel(logging.INFO) #Setting the threshold of logger to DEBUG/INFO
+
+    log_message_once("Program started", "INFO")
+
 
     # get client_key for POST request authentication on data_receiver.php from db.ini
     # other devices in the internet cannot POST data to data_receiver.php without client_key
