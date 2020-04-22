@@ -6,22 +6,22 @@ import sys
 
 import urllib.request
 import requests
-#from requests import get
 import configparser
 
-#to prevent socket timeout error
+# to prevent socket timeout error
 from socket import timeout
 from urllib.error import HTTPError, URLError
 
-#logging module
+# logging module
 import logging
 
 
+# sensehat initial setup
 sense = SenseHat()
 sense.clear()
+#sense.set_rotation(180)
 
-##sense.set_rotation(180)
-
+# global sensehat colours
 blue = (0,0,255)
 yellow = (255,255,0) 
 red = (255,0,0)
@@ -36,7 +36,7 @@ cyan = (0,255,255)
 
 # FUNCTIONS---------------------------------------
 
-#Checks if internet is on by urlopen-ing google.com
+# Checks if internet is on by urlopen-ing google.com
 def check_internet_status():
    try:
       urllib.request.urlopen('http://216.58.192.142', timeout=1)
@@ -62,20 +62,18 @@ def check_internet_status():
    
    
 
-#Prints in monitor and scrolls text in sensehat
+# Prints in monitor and scrolls text in sensehat
 def print_scroll_text(message, led_colour):
    print("\n" + message)
-   # prevent_burn_in() # For OLED burn-in prevention
    sense.show_message(message, text_colour = led_colour, back_colour = black, scroll_speed = 0.03)
 
-#Scrolls text in sensehat
+# Scrolls text in sensehat
 def scroll_text(message, led_colour):
    sense.show_message(message, text_colour = led_colour, back_colour = black, scroll_speed = 0.03)
 
 
 
-# Logs an error message to file only once
-# same subsequent error messages will not be logged
+# Logs an error message to file ONLY ONCE and same subsequent error messages will be ignored
 def log_message_once(log_message, log_level):
    # call the global var declared in main() to be used here
    global logged_message
@@ -97,7 +95,7 @@ def log_message_once(log_message, log_level):
    
 
 
-#Get sensor readings
+# Get sensor readings
 def get_sensor_readings():
    global temperature
    global pressure
@@ -118,7 +116,7 @@ def get_sensor_readings():
 
 
 
-#POSTs readings to webserver
+# POSTs readings to webserver
 def post_readings_to_webserver():
    try:
       screen_message = "\nTemperature: " + str(temperature) + "C | Pressure: " + str(pressure) +\
@@ -138,7 +136,6 @@ def post_readings_to_webserver():
       # based on the text returned from POST request, auth success is checked here
       if (r.text == "POST data written to database after Auth"):       
          print(screen_message)
-         # prevent_burn_in() # For OLED burn-in prevention
          scroll_text(sensehat_message, white)
          log_message_once("Posting sensor readings to live database", "INFO")
          return True #return true if post successful
@@ -163,11 +160,11 @@ def post_readings_to_webserver():
       # so that this same error will not be logged again if
       # this "POST request failed" error keeps looping
       logged_message = post_error
-      return False #return false if exception happen
+      return False # return false if exception happen
 
 
 
-#Cleans db and keep only last 10 records
+# Cleans db and keep only last 10 records
 def cleanup_db():   
    try:
       payload = {'key': client_key}
@@ -208,13 +205,7 @@ def cleanup_db():
       return False #return false if exception happen
 
 
-   
-#For OLED burn-in prevention, add some random EOL
-def prevent_burn_in():
-   primes_minus_1_list = [1,4,6,10,12]
-   oled_steps = random.choice(primes_minus_1_list)
-   for x in range(oled_steps):
-      print("") #prints a blank line
+
 
 
 # MAIN PROGRAM---------------------------------
@@ -225,7 +216,7 @@ if __name__ == '__main__':
     logged_message = "" # to keep track of latest logged message
 
 
-    #Create and configure logger 
+    # 1. Create and configure logger 
     logging.basicConfig(filename="/home/pi/projects/yav_python2html/python/error.log", 
                     format='%(asctime)-21s %(levelname)-8s %(message)s', datefmt='%d-%m-%Y %H:%M:%S',
                     filemode='a')   
@@ -236,8 +227,8 @@ if __name__ == '__main__':
     log_message_once("Program started", "INFO")
 
 
-    # get client_key for POST request authentication on data_receiver.php from db.ini
-    # other devices in the internet cannot POST data to data_receiver.php without client_key
+    # 2. Get client_key for POST request authentication on data_receiver.php from db.ini
+    # Other devices in the internet cannot POST data to data_receiver.php without client_key
     # 'User-Agent' headers are to be sent with POST requests or my webserver is giving out 403 error
     config = configparser.ConfigParser()
     # config.read('../r_admin_use/db.ini')
@@ -246,14 +237,14 @@ if __name__ == '__main__':
     headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
 
-    ### this is outer infinite loop
+    # 3. This is outer infinite loop
     while True:
 
       if not check_internet_status(): #if check_internet_status returns false
          continue #keep checking for internet by looping outer while loop
 
 
-      ### this is inner infinite loop
+      # 4. This is inner infinite loop
       while True: # once internet is connected
 
          counter += 1 # counter for cleaning up db once in 10 loops
@@ -273,7 +264,6 @@ if __name__ == '__main__':
                break # break will close this inner loop and returns to outer loop where it checks internet status again
             else: # if cleanup_db returns true
                counter = 0 # reset counter
-            # counter = 0 # reset counter. Comment this if counter was reset before.
 
 
             
