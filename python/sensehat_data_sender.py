@@ -140,7 +140,7 @@ def post_readings_to_webserver():
          print(screen_message)
          # prevent_burn_in() # For OLED burn-in prevention
          scroll_text(sensehat_message, white)
-         log_message_once("Started posting sensor readings", "INFO")
+         log_message_once("Posting sensor readings to live database", "INFO")
          return True #return true if post successful
       elif (r.text == "POST Authentication failed"): 
          print_scroll_text(r.text, cyan)
@@ -149,13 +149,13 @@ def post_readings_to_webserver():
             
    # exception raised for any reason
    except Exception as e:
-      post_error = "POST request failed: "
+      post_error = "POST request failed"
       print_scroll_text(post_error, red)
       log_message_once(post_error, "ERROR")
       log_message_once(e, "ERROR")  
       print(e)
             
-      reconnect_message = "Will reconnect...\n\n"
+      reconnect_message = "Will reconnect...\n"
       print_scroll_text(reconnect_message, yellow)
       log_message_once(reconnect_message, "INFO")
 
@@ -191,13 +191,13 @@ def cleanup_db():
    
    # exception raised for any reason
    except Exception as e:
-      post_error = "POST request failed: "
+      post_error = "POST request failed"
       print_scroll_text(post_error, red)
       log_message_once(post_error, "ERROR")
       log_message_once(e, "ERROR")  
       print(e)
    
-      reconnect_message = "Will reconnect...\n\n"
+      reconnect_message = "Will reconnect...\n"
       print_scroll_text(reconnect_message, yellow)
       log_message_once(reconnect_message, "INFO")
 
@@ -232,7 +232,7 @@ if __name__ == '__main__':
     logger=logging.getLogger() #Creating an object 
     logger.setLevel(logging.INFO) #Setting the threshold of logger to DEBUG/INFO
 
-    log_message_once("\n\n\n", "INFO") # spacer in log file 
+    log_message_once("New run starting... \n\n", "INFO") # spacer in log file 
     log_message_once("Program started", "INFO")
 
 
