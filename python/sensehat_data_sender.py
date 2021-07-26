@@ -39,7 +39,8 @@ cyan = (0,255,255)
 # Checks if internet is on by urlopen-ing google.com
 def check_internet_status():
    try:
-      urllib.request.urlopen('http://216.58.192.142', timeout=1)
+      # urllib.request.urlopen('http://216.58.192.142', timeout=1) # url http://216.58.192.142 stopped working july 2021
+      urllib.request.urlopen('https://www.google.com/', timeout=1)
       online_message = "Internet is on"
       print_scroll_text(online_message, green)
       log_message_once(online_message, "INFO")
