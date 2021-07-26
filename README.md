@@ -9,7 +9,7 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 Clone this public repo to your local machine for your development and testing purposes.
 
-### Prerequisites
+### Prerequisites to clone this project
 
 * **Some coding experience essential.**
 * [XAMPP](https://www.apachefriends.org/index.html) - Local web server. [PHP](https://www.php.net/) comes with it.
