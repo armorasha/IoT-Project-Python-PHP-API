@@ -3,7 +3,7 @@ An IoT project to send live local weather data gathered using Raspberry Pi's Sen
 
 ## Dashboard
 
-![Image of Dashboard](https://math.foodonya.com/iot/r_admin_use/dash_img.jpg)
+![Image of Dashboard](r_admin_use/dash_img.jpg)
 
 ## How to run this project?
 
